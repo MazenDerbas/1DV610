@@ -42,9 +42,14 @@ body{
     cursor: pointer;
   }
 
+  #error-message{
+    color: red;
+    margin-top: 20px;
+  }
+
 .firework{
     position: fixed;
-    background-image: url('../star.png');
+    background-image: url('../image/star.png');
     width: 50px;
     height:50px;
     background-size: cover;
@@ -57,7 +62,16 @@ body{
     font-family: 'Arial', sans-serif; 
     letter-spacing: 4px;
     text-shadow: 0 0 10px #0ff, 0 0 20px #0ff, 0 0 30px #0ff, 0 0 40px #0ff; /* Text shadow for the neon glow effect */
+    animation: flicker 1s infinite alternate; 
 }
+@keyframes flicker {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.5;
+    }
+  }
 
 .hidden {
     display: none
