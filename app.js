@@ -1,12 +1,16 @@
+import "/Firework.js";
+
 const userInput = document.getElementById('userName')
 const submit = document.getElementById('generateButton')
 const welcome = document.getElementById('welcome-message')
+const container = document.getElementById('firework-container');
 
 
 submit.addEventListener('click', ()=>  {
     const name = userInput.value;
     setWelcomeMessage(name);
-    clearInput()
+    clearInput();
+
     
 });
 
@@ -23,5 +27,10 @@ function clearInput() {
 }
 
 
+
+
+
+
+    
 
 
