@@ -1,17 +1,32 @@
+import { setFireWork } from "/Firework.js";
 import "/Firework.js";
+
 
 const userInput = document.getElementById('userName')
 const submit = document.getElementById('generateButton')
 const welcome = document.getElementById('welcome-message')
-const container = document.getElementById('firework-container');
+const heading = document.getElementById('heading')
+const reset = document.getElementById('resetButton')
 
 
-submit.addEventListener('click', ()=>  {
+submit.addEventListener('click', () =>  {
+
+    userInput.classList.add('hidden')
+    submit.classList.add('hidden')
+    heading.classList.add('hidden')
+
+    reset.classList.remove('hidden')
+
     const name = userInput.value;
     setWelcomeMessage(name);
     clearInput();
-
+    setFireWork();
     
+});
+
+
+reset.addEventListener('click', () => {
+    window.location.reload()
 });
 
 function setWelcomeMessage (userInput) {

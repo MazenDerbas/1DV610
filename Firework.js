@@ -1,4 +1,5 @@
 const submit = document.getElementById('generateButton')
+const fireworks = [];
 
 export class Firework{
     constructor (){
@@ -7,15 +8,20 @@ export class Firework{
         document.body.appendChild(this.fireWorkDiv);
 
         this.positionX = window.innerWidth / 2; //Place the star in the center of the browser 
-        this.positionY = window.innerHeight ; // subtract 10 pixels form the hight so the star will apper 
+        this.positionY = window.innerHeight ; 
 
         this.angle = (Math.random() * Math.PI * 2);
+        
         this.vx = Math.cos(this.angle) * 5 //speed is 5
         this.vy = Math.sin(this.angle) * 5
 
         this.fireWorkDiv.style.left = this.positionX + 'px';
         this.fireWorkDiv.style.top = this.positionY   + 'px';
     
+            // Stop the animation after a certain time (e.g., 2000 milliseconds)
+        setTimeout(() => {
+         this.remove();
+        }, 2000);
     }
 
 move() {
@@ -26,24 +32,26 @@ move() {
     
 }
 
+remove(){
+    // Remove the firework from the DOM
+    this.fireWorkDiv.remove();
 
+    // Remove the firework from the fireworks array
+    const index = fireworks.indexOf(this);
+    if (index !== -1) {
+        fireworks.splice(index, 1);
+    }
+  }
 }
-const fireworks = [];
 
-submit.addEventListener('click', ()=>  {
-
-    const moveInterval = setInterval(() => {
-        fireworks.forEach(firework => firework.move());
-      }, 10);
+export function setFireWork () {
+ 
+  setInterval(() => {
+    fireworks.forEach(firework => firework.move());
+  }, 10);
     
-    // Stop the animation after a certain time (e.g., 2000 milliseconds)
-    setTimeout(() => {
-        clearInterval(moveInterval);
-    }, 2000);
-
       setInterval(() => {
         const firework = new Firework();
         fireworks.push(firework);
-      }, 100);
-});
-  
+  }, 100);
+}
